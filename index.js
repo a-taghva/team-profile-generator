@@ -7,9 +7,12 @@ const managerData = [];
 const engineerData = [];
 const internData = [];
 
-const promptManager = () => {
-    console.clear()
-    console.log('Please build your team!')
+const promptManager = (firstTime = false) => {
+    if (firstTime) {
+        console.clear();
+        console.log('Please build your team!');
+    };
+
     return inquirer.prompt([
         {
             type: 'input',
@@ -170,7 +173,7 @@ const selectRole = () => {
             type: 'list',
             name: 'role',
             message: 'Which type of team member would you like to add?',
-            choices: ['Engineer', 'Intern', 'I don\'t want to add any more team memebers!'],
+            choices: ['Manager', 'Engineer', 'Intern', 'I don\'t want to add any more team memebers!'],
         }
     ])
     .then(({ role }) => {
@@ -178,14 +181,12 @@ const selectRole = () => {
     });
 };
 
-promptManager()
-    .then(mngrData => {
-        managerData.push(mngrData);
-        selectRole();
-    });
-
 function addOrQuit(role) {
-    if (role === 'Engineer') {
+    if (role === 'Manager') {
+        promptManager()
+            .then(mngrData => managerData.push(mngrData))
+            .then(selectRole);
+    } else if (role === 'Engineer') {
         promptEngineer()
             .then(engData => engineerData.push(engData))
             .then(selectRole);
@@ -194,6 +195,12 @@ function addOrQuit(role) {
             .then(intrnData => internData.push(intrnData))
             .then(selectRole);
     } else {
-        console.log('manger', managerData, 'engineer', engineerData, 'intern', internData);
+        console.log("Done!");
     }
 };
+
+promptManager(true)
+    .then(mngrData => {
+        managerData.push(mngrData);
+        selectRole();
+    });
