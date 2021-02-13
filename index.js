@@ -1,11 +1,18 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const emailValidator = require('email-validator');
-const PasswordPrompt = require('inquirer/lib/prompts/password');
 
 const managerData = [];
 const engineerData = [];
 const internData = [];
+
+const startQuery = () => {
+    promptManager(true)
+        .then(mngrData => {
+            managerData.push(mngrData);
+            selectRole();
+        });
+};
 
 const promptManager = (firstTime = false) => {
     if (firstTime) {
@@ -181,7 +188,7 @@ const selectRole = () => {
     });
 };
 
-function addOrQuit(role) {
+const addOrQuit = role => {
     if (role === 'Manager') {
         promptManager()
             .then(mngrData => managerData.push(mngrData))
@@ -199,8 +206,4 @@ function addOrQuit(role) {
     }
 };
 
-promptManager(true)
-    .then(mngrData => {
-        managerData.push(mngrData);
-        selectRole();
-    });
+startQuery();
