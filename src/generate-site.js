@@ -20,7 +20,7 @@ const generateManagerCard = managerArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${manager.getId()}</span></p></li>
-                        <li><p>Email: <span><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a><span></p></li>
+                        <li><p>Email: <span><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></span></p></li>
                         <li><p>Office Number: ${manager.getOfficeNumber()}</p></li>
                     </ul>
                 </div>  
@@ -40,7 +40,7 @@ const generateEngineerCard = engineerArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${engineer.getId()}</span></p></li>
-                        <li><p>Email: <span><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a><span></p></li>
+                        <li><p>Email: <span><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></span></p></li>
                         <li><p>GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p></li>
                     </ul>
                 </div>  
@@ -60,7 +60,7 @@ const generateInternCard = interArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${intern.getId()}</span></p></li>
-                        <li><p>Email: <span><a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a><span></p></li>
+                        <li><p>Email: <span><a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></span></p></li>
                         <li><p>School: ${intern.getSchool()}</p></li>
                     </ul>
                 </div>  
@@ -75,7 +75,7 @@ const generateSite = (managerArr, engineerArr, internArr) => {
         <html lang="en">
             <head>
                 <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0 />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>My Team</title>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
                 <link rel="stylesheet" href="./style.css" />
