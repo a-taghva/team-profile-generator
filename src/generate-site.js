@@ -1,4 +1,5 @@
 const generateCards = (managerArr, engineerArr, internArr) => {
+    if (!managerArr && !engineerArr && !internArr) return '';
     return `
         <section id="cards">
             ${generateManagerCard(managerArr)}
@@ -9,38 +10,38 @@ const generateCards = (managerArr, engineerArr, internArr) => {
 };
 
 const generateManagerCard = managerArr => {
-    managerArr.map(({ name, id, email, officeNumber }) =>{
+    managerArr.map(manager =>{
         return `
             <div class="card">
                 <div class="card-title">
-                    <h2>${name}</h2>
-                    <h3><i class="fas fa-mug-hot"></i> Manager</h3>
+                    <h2>${manager.getName()}</h2>
+                    <h3><i class="fas fa-mug-hot"></i> ${manager.getRole()}</h3>
                 </div>
                 <div class="card-body">
                     <ul class="card-description">
-                        <li><p>ID: <span>${id}</span></p></li>
-                        <li><p>Email: <span>${email}<span></p></li>
-                        <li><p>Office Number: ${officeNumber}</p></li>
+                        <li><p>ID: <span>${manager.getId()}</span></p></li>
+                        <li><p>Email: <span>${manager.getEmail()}<span></p></li>
+                        <li><p>Office Number: ${manager.getOfficeNumber()}</p></li>
                     </ul>
                 </div>  
             </div>
         `;
-    })
+    });
 };
 
 const generateEngineerCard = engineerArr => {
-    engineerArr.map(({ name, id, email, github }) =>{
+    engineerArr.map(engineer =>{
         return `
             <div class="card">
                 <div class="card-title">
-                    <h2>${name}</h2>
-                    <h3><i class="fas fa-glasses"></i> Engineer</h3>
+                    <h2>${engineer.getName()}</h2>
+                    <h3><i class="fas fa-glasses"></i> ${engineer.getRole()}</h3>
                 </div>
                 <div class="card-body">
                     <ul class="card-description">
-                        <li><p>ID: <span>${id}</span></p></li>
-                        <li><p>Email: <span>${email}<span></p></li>
-                        <li><p>GitHub: ${github}</p></li>
+                        <li><p>ID: <span>${engineer.getId()}</span></p></li>
+                        <li><p>Email: <span>${engineer.getEmail()}<span></p></li>
+                        <li><p>GitHub: ${engineer.getGithub()}</p></li>
                     </ul>
                 </div>  
             </div>
@@ -49,18 +50,18 @@ const generateEngineerCard = engineerArr => {
 };
 
 const generateInternCard = interArr => {
-    interArr.map(({ name, id, email, school }) =>{
+    interArr.map(intern =>{
         return `
             <div class="card">
                 <div class="card-title">
-                    <h2>${name}</h2>
-                    <h3><i class="fas fa-user-graduate"></i> Intern</h3>
+                    <h2>${intern.getName()}</h2>
+                    <h3><i class="fas fa-user-graduate"></i> ${intern.getRole()}</h3>
                 </div>
                 <div class="card-body">
                     <ul class="card-description">
-                        <li><p>ID: <span>${id}</span></p></li>
-                        <li><p>Email: <span>${email}<span></p></li>
-                        <li><p>School: ${school}</p></li>
+                        <li><p>ID: <span>${intern.getId()}</span></p></li>
+                        <li><p>Email: <span>${intern.getEmail()}<span></p></li>
+                        <li><p>School: ${intern.getSchool()}</p></li>
                     </ul>
                 </div>  
             </div>
@@ -68,8 +69,8 @@ const generateInternCard = interArr => {
     });
 };
 
-const generateSite = () => {
-    return `
+const generateSite = (a, b, c) => {
+    console.log(`
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -86,9 +87,11 @@ const generateSite = () => {
             </header>
 
             <main>
-
+                ${generateCards(a, b, c)}
             </main>
         </body>
     </html>
-    `
+    `);
 };
+
+module.exports = generateSite;

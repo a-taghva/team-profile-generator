@@ -1,9 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const emailValidator = require('email-validator');
+
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const generateSite = require('./src/generate-site');
 
 
 const managerData = [];
@@ -11,7 +13,7 @@ const engineerData = [];
 const internData = [];
 
 const startQuery = () => {
-    promptManager(true);
+    return promptManager(true);
 };
 
 const promptManager = (firstTime = false) => {
@@ -70,7 +72,7 @@ const promptManager = (firstTime = false) => {
             },
         },
     ])
-    .then(({ name, id, email, officeNumber}) => {
+    .then(({ name, id, email, officeNumber }) => {
         managerData.push(new Manager(name, id, email, officeNumber));
         selectRole();
     })
@@ -216,4 +218,4 @@ const addOrQuit = role => {
     }
 };
 
-startQuery();
+startQuery()
