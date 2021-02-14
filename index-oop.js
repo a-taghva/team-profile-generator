@@ -5,6 +5,8 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+const generateSite = require("./src/generate-site");
+
 class TeamMembers {
     constructor() {
         this.manager = [];
@@ -215,7 +217,8 @@ class TeamMembers {
                 this.promptIntern();
                 break;
             default:
-                console.log('Done!');
+                generateSite(this.manager, this.engineer, this.intern);
+                console.log('Your website has been generated!');
         };
     };
 

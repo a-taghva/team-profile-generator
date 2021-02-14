@@ -10,7 +10,7 @@ const generateCards = (managerArr, engineerArr, internArr) => {
 };
 
 const generateManagerCard = managerArr => {
-    managerArr.map(manager =>{
+    return managerArr.map(manager => {
         return `
             <div class="card">
                 <div class="card-title">
@@ -30,7 +30,7 @@ const generateManagerCard = managerArr => {
 };
 
 const generateEngineerCard = engineerArr => {
-    engineerArr.map(engineer =>{
+    return engineerArr.map(engineer => {
         return `
             <div class="card">
                 <div class="card-title">
@@ -50,7 +50,7 @@ const generateEngineerCard = engineerArr => {
 };
 
 const generateInternCard = interArr => {
-    interArr.map(intern =>{
+    return interArr.map(intern => {
         return `
             <div class="card">
                 <div class="card-title">
@@ -69,7 +69,7 @@ const generateInternCard = interArr => {
     });
 };
 
-const generateSite = (a, b, c) => {
+const generateSite = (managerArr, engineerArr, internArr) => {
     console.log(`
     <!DOCTYPE html>
     <html lang="en">
@@ -87,7 +87,7 @@ const generateSite = (a, b, c) => {
             </header>
 
             <main>
-                ${generateCards(a, b, c)}
+                    ${generateCards(managerArr, engineerArr, internArr)}
             </main>
         </body>
     </html>
