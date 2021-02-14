@@ -154,7 +154,7 @@ class TeamMembers {
                 message: 'What is intern\'s ID?',
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log('Please enter a number!');
+                        console.log('\nPlease enter a number!');
                         return false;
                     };
     
@@ -168,7 +168,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log('Please enter a valid email address!');
+                    console.log('\nPlease enter a valid email address!');
                     return false;
                 },
             },
@@ -179,13 +179,14 @@ class TeamMembers {
                 validate: school => {
                     if (school) return true;
     
-                    console.log('Please enter a school!');
+                    console.log('\nPlease enter a school!');
                     return false;
                 }
             },
         ])
         .then(({ name, id, email, school}) => {
             this.intern.push(new Intern(name, id, email, school));
+            console.log(this.intern);
             this.selectRole();
         });
     };
@@ -205,7 +206,7 @@ class TeamMembers {
         });
     };
 
-    addOrQuit (role) {
+    addOrQuit(role) {
         switch (role) {
             case 'Manager':
                 this.promptManager();

@@ -26,7 +26,7 @@ const generateManagerCard = managerArr => {
                 </div>  
             </div>
         `;
-    });
+    }).join("");
 };
 
 const generateEngineerCard = engineerArr => {
@@ -46,7 +46,7 @@ const generateEngineerCard = engineerArr => {
                 </div>  
             </div>
         `;
-    });
+    }).join("");
 };
 
 const generateInternCard = interArr => {
@@ -66,7 +66,7 @@ const generateInternCard = interArr => {
                 </div>  
             </div>
         `;
-    });
+    }).join("");
 };
 
 const generateSite = (managerArr, engineerArr, internArr) => {
