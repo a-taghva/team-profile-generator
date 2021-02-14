@@ -5,7 +5,7 @@
 * [Description](#description)
 * [Installation](#installation)
 * [License](#license)
-* [Webpage]("#made-with")
+* [Webpage](#made-with)
 
 ## Description
 This app gives you as a manger, the ability to generate a webpage that displays your team's basic info, so you have quick access to their emails and GitHub profiles.
