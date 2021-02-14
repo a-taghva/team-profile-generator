@@ -6,6 +6,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 const generateSite = require("./src/generate-site");
+const writeFile = require("./src/fs");
 
 class TeamMembers {
     constructor() {
@@ -217,11 +218,12 @@ class TeamMembers {
                 this.promptIntern();
                 break;
             default:
-                generateSite(this.manager, this.engineer, this.intern);
-                console.log('Your website has been generated!');
+                const pageHTML = generateSite(this.manager, this.engineer, this.intern)    
+                writeFile(pageHTML)
+                    .then(res => console.log(res.message))
+                    .catch(err => console.log(err));
         };
     };
-
 };
 
 new TeamMembers().startQuery();

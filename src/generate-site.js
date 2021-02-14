@@ -70,28 +70,28 @@ const generateInternCard = interArr => {
 };
 
 const generateSite = (managerArr, engineerArr, internArr) => {
-    console.log(`
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0 />
-            <title>My Team</title>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-            <link rel="stylesheet" href="./style.css" />
-        </head>
+    return `
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0 />
+                <title>My Team</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+                <link rel="stylesheet" href="./style.css" />
+            </head>
 
-        <body>
-            <header>
-                <h1>My Team</h1>
-            </header>
+            <body>
+                <header>
+                    <h1>My Team</h1>
+                </header>
 
-            <main>
-                ${generateCards(managerArr, engineerArr, internArr)}
-            </main>
-        </body>
-    </html>
-    `);
+                <main>
+                    ${generateCards(managerArr, engineerArr, internArr)}
+                </main>
+            </body>
+        </html>
+    `;
 };
 
 module.exports = generateSite;
