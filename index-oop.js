@@ -5,7 +5,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-class Query {
+class TeamMembers {
     constructor() {
         this.manager = [];
         this.engineer = [];
@@ -78,6 +78,116 @@ class Query {
         })
     };
 
+    promptEngineer() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is your engineer\'s name?',
+                validate: name => {
+                    if (name) return true;
+    
+                    console.log('\nPlease enter engineer\'s name');
+                    return false;
+                }
+            },
+            {
+                type: 'input', 
+                name: 'id',
+                message: "What is the Engineer's ID?",
+                validate: id => {
+                    if (!id || isNaN(id)) {
+                        console.log('\nPlease enter a number!');
+                        return false;
+                    }
+    
+                    return true;
+                },
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'What is the engineer\'s email?',
+                validate: email => {
+                    if (emailValidator.validate(email)) return true;
+    
+                    console.log("\nPlease enter a valid Email address!");
+                    return false;
+                },
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'What is the engineer\'s GitHub username?',
+                validate: github => {
+                    if (github) return true;
+    
+                    console.log('\nYou need to enter engineer\'s github user name');
+                    return false;
+                },
+            }
+        ])
+        .then(({ name, id, email, github }) => {
+            this.engineer.push(new Engineer(name, id, email, github));
+            this.selectRole();
+        });
+    };
+
+    promptIntern() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'What is your intern\'s name?',
+                validate: name => {
+                    if (name) return true;
+    
+                    console.log("\nPlease enter a name!");
+                    return false;
+                },
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'What is intern\'s ID?',
+                validate: id => {
+                    if (!id || isNaN(id)) {
+                        console.log('Please enter a number!');
+                        return false;
+                    };
+    
+                    return true;
+                },
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'What is intern\'s Email?',
+                validate: email => {
+                    if (emailValidator.validate(email)) return true;
+    
+                    console.log('Please enter a valid email address!');
+                    return false;
+                },
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: 'What is intern\'s school?',
+                validate: school => {
+                    if (school) return true;
+    
+                    console.log('Please enter a school!');
+                    return false;
+                }
+            },
+        ])
+        .then(({ name, id, email, school}) => {
+            this.intern.push(new Intern(name, id, email, school));
+            this.selectRole();
+        });
+    };
+
 
     selectRole() {
         inquirer.prompt([
@@ -111,4 +221,4 @@ class Query {
 
 };
 
-new Query().startQuery();
+new TeamMembers().startQuery();
