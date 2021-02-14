@@ -41,7 +41,7 @@ const generateEngineerCard = engineerArr => {
                     <ul class="card-description">
                         <li><p>ID: <span>${engineer.getId()}</span></p></li>
                         <li><p>Email: <span><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></span></p></li>
-                        <li><p>GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p></li>
+                        <li><p>GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a></p></li>
                     </ul>
                 </div>  
             </div>

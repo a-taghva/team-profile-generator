@@ -17,13 +17,27 @@ class TeamMembers {
 
     startQuery(role = "Manager") {
         switch (role) {
-            case "Manager":
-                this.promptManager()
+            case 'Manager':
+                this.promptManager();
                 break;
+            case 'Engineer':
+                this.promptEngineer();
+                break;
+            case 'Intern':
+                this.promptIntern();
+                break;
+            default:
+                const pageHTML = generateSite(this.manager, this.engineer, this.intern)    
+                writeFile(pageHTML)
+                    .then(res => console.log("\x1b[35m", res.message))
+                    .catch(err => console.log("\x1b[31m", err));
         };
     };
 
-    promptManager() {
+    promptManager(clear = false) {
+        console.clear();
+        console.log("\x1b[36m", "Let's build your team!");
+
         inquirer.prompt([
             {
                 type: 'input',
@@ -32,7 +46,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log('\nPlease enter manager\'s name!');
+                    console.log("\x1b[31m", '\nPlease enter manager\'s name!');
                     return false;
                 },
             },
@@ -42,7 +56,7 @@ class TeamMembers {
                 message: "What is the manger's ID?",
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log('\nPlease enter a number!');
+                        console.log("\x1b[31m", '\nPlease enter a number!');
                         return false;
                     }
     
@@ -56,7 +70,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log("\nPlease enter a valid Email address!");
+                    console.log("\x1b[31m", "\nPlease enter a valid Email address!");
                     return false;
                 },
             },
@@ -66,7 +80,7 @@ class TeamMembers {
                 message: 'What is the manager\'s office number?',
                 validate: officeNumber => {
                     if (!officeNumber || isNaN(officeNumber)) {
-                        console.log("\nYou need to enter a number!");
+                        console.log("\x1b[31m", "\nYou need to enter a number!");
                         return false;
                     };
     
@@ -89,7 +103,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log('\nPlease enter engineer\'s name');
+                    console.log("\x1b[31m", '\nPlease enter engineer\'s name');
                     return false;
                 }
             },
@@ -99,7 +113,7 @@ class TeamMembers {
                 message: "What is the Engineer's ID?",
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log('\nPlease enter a number!');
+                        console.log("\x1b[31m", '\nPlease enter a number!');
                         return false;
                     }
     
@@ -113,7 +127,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log("\nPlease enter a valid Email address!");
+                    console.log("\x1b[31m", "\nPlease enter a valid Email address!");
                     return false;
                 },
             },
@@ -124,7 +138,7 @@ class TeamMembers {
                 validate: github => {
                     if (github) return true;
     
-                    console.log('\nYou need to enter engineer\'s github user name');
+                    console.log("\x1b[31m", '\nYou need to enter engineer\'s github user name');
                     return false;
                 },
             }
@@ -144,7 +158,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log("\nPlease enter a name!");
+                    console.log("\x1b[31m", "\nPlease enter a name!");
                     return false;
                 },
             },
@@ -154,7 +168,7 @@ class TeamMembers {
                 message: 'What is intern\'s ID?',
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log('\nPlease enter a number!');
+                        console.log("\x1b[31m", '\nPlease enter a number!');
                         return false;
                     };
     
@@ -168,7 +182,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log('\nPlease enter a valid email address!');
+                    console.log("\x1b[31m", '\nPlease enter a valid email address!');
                     return false;
                 },
             },
@@ -179,7 +193,7 @@ class TeamMembers {
                 validate: school => {
                     if (school) return true;
     
-                    console.log('\nPlease enter a school!');
+                    console.log("\x1b[31m", '\nPlease enter a school!');
                     return false;
                 }
             },
@@ -197,32 +211,14 @@ class TeamMembers {
                 type: 'list',
                 name: 'role',
                 message: 'Which type of team member would you like to add?',
-                choices: ['Manager', 'Engineer', 'Intern', 'I don\'t want to add any more team memebers!'],
+                choices: ['Engineer', 'Intern', 'I don\'t want to add any more team memebers!'],
             }
         ])
         .then(({ role }) => {
-            this.addOrQuit(role);
+            this.startQuery(role);
         });
     };
 
-    addOrQuit(role) {
-        switch (role) {
-            case 'Manager':
-                this.promptManager();
-                break;
-            case 'Engineer':
-                this.promptEngineer();
-                break;
-            case 'Intern':
-                this.promptIntern();
-                break;
-            default:
-                const pageHTML = generateSite(this.manager, this.engineer, this.intern)    
-                writeFile(pageHTML)
-                    .then(res => console.log(res.message))
-                    .catch(err => console.log(err));
-        };
-    };
 };
 
 new TeamMembers().startQuery();
