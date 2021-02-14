@@ -23,7 +23,7 @@ const promptManager = (firstTime = false) => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'managerName',
+            name: 'name',
             message: 'What is the manager\'s name?',
             validate: name => {
                 if (name) return true;
@@ -34,7 +34,7 @@ const promptManager = (firstTime = false) => {
         },
         {
             type: 'input', 
-            name: 'managerId',
+            name: 'id',
             message: "What is the manger's ID?",
             validate: id => {
                 if (!id || isNaN(id)) {
@@ -47,7 +47,7 @@ const promptManager = (firstTime = false) => {
         },
         {
             type: 'input',
-            name: 'managerEmail',
+            name: 'email',
             message: 'What is the manger\'s email?',
             validate: email => {
                 if (emailValidator.validate(email)) return true;
@@ -76,7 +76,7 @@ const promptEngineer = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'engineerName',
+            name: 'name',
             message: 'What is your engineer\'s name?',
             validate: name => {
                 if (name) return true;
@@ -87,7 +87,7 @@ const promptEngineer = () => {
         },
         {
             type: 'input', 
-            name: 'engineerId',
+            name: 'id',
             message: "What is the Engineer's ID?",
             validate: id => {
                 if (!id || isNaN(id)) {
@@ -100,7 +100,7 @@ const promptEngineer = () => {
         },
         {
             type: 'input',
-            name: 'engineerEmail',
+            name: 'email',
             message: 'What is the engineer\'s email?',
             validate: email => {
                 if (emailValidator.validate(email)) return true;
@@ -127,7 +127,7 @@ const promptIntern = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'internName',
+            name: 'name',
             message: 'What is your intern\'s name?',
             validate: name => {
                 if (name) return true;
@@ -138,7 +138,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'ineternId',
+            name: 'id',
             message: 'What is intern\'s ID?',
             validate: id => {
                 if (!id || isNaN(id)) {
@@ -151,7 +151,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'internEmail',
+            name: 'email',
             message: 'What is intern\'s Email?',
             validate: email => {
                 if (emailValidator.validate(email)) return true;
@@ -162,7 +162,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'internSchool',
+            name: 'school',
             message: 'What is intern\'s school?',
             validate: school => {
                 if (school) return true;
@@ -206,4 +206,4 @@ const addOrQuit = role => {
     }
 };
 
-startQuery();
+startQuery()

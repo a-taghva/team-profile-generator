@@ -75,16 +75,20 @@ header h1 {
 	border-radius: 5px;
 }
 
-.card-description div:not(:last-child){
+.card-description {
+	list-style: none;
+}
+
+.card-description li:not(:last-child) {
 	border-bottom: 1px solid gray;
 }
 
-.card-description div p {
+.card-description li p {
 	padding: 10px;
 	border-collapse: collapse;
 }
 
-.card-description div a {
+.card-description li a {
 	text-decoration: none;
 }
 
