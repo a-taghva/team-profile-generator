@@ -186,7 +186,6 @@ class TeamMembers {
         ])
         .then(({ name, id, email, school}) => {
             this.intern.push(new Intern(name, id, email, school));
-            console.log(this.intern);
             this.selectRole();
         });
     };
