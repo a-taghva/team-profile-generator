@@ -1,17 +1,17 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const emailValidator = require('email-validator');
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+
 
 const managerData = [];
 const engineerData = [];
 const internData = [];
 
 const startQuery = () => {
-    promptManager(true)
-        .then(mngrData => {
-            managerData.push(mngrData);
-            selectRole();
-        });
+    promptManager(true);
 };
 
 const promptManager = (firstTime = false) => {
@@ -20,7 +20,7 @@ const promptManager = (firstTime = false) => {
         console.log('Please build your team!');
     };
 
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -69,11 +69,15 @@ const promptManager = (firstTime = false) => {
                 return true;
             },
         },
-    ]);
+    ])
+    .then(({ name, id, email, officeNumber}) => {
+        managerData.push(new Manager(name, id, email, officeNumber));
+        selectRole();
+    })
 };
 
 const promptEngineer = () => {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -120,11 +124,15 @@ const promptEngineer = () => {
                 return false;
             },
         }
-    ]);
+    ])
+    .then(({ name, id, email, github }) => {
+        engineerData.push(new Engineer(name, id, email, github));
+        selectRole();
+    })
 };
 
 const promptIntern = () => {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -171,7 +179,11 @@ const promptIntern = () => {
                 return false;
             }
         },
-    ]);
+    ])
+    .then(({ name, id, email, school}) => {
+        internData.push(new Intern(name, id, email, school));
+        selectRole();
+    })
 };
 
 const selectRole = () => {
@@ -189,21 +201,19 @@ const selectRole = () => {
 };
 
 const addOrQuit = role => {
-    if (role === 'Manager') {
-        promptManager()
-            .then(mngrData => managerData.push(mngrData))
-            .then(selectRole);
-    } else if (role === 'Engineer') {
-        promptEngineer()
-            .then(engData => engineerData.push(engData))
-            .then(selectRole);
-    } else if (role === 'Intern') {
-        promptIntern()
-            .then(intrnData => internData.push(intrnData))
-            .then(selectRole);
-    } else {
-        console.log("Done!");
+    switch (role) {
+        case 'Manager':
+            promptManager();
+            break;
+        case 'Engineer':
+            promptEngineer();
+            break;
+        case 'Intern':
+            promptIntern();
+            break;
+        default:
+            console.log('Done!');
     }
 };
 
-startQuery()
+startQuery();
