@@ -18,5 +18,5 @@ test('get engineer\'s role', () => {
 test('get engineer\'s github', () => {
     const engineer = new Engineer('Sara', '3', 'sara123@gmail.com', 'sara-git');
 
-    expect(engineer.getGithub()).toBe(engineer.github);
+    expect(engineer.getGithub()).toBe("sara-git");
 });

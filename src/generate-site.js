@@ -20,7 +20,7 @@ const generateManagerCard = managerArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${manager.getId()}</span></p></li>
-                        <li><p>Email: <span>${manager.getEmail()}<span></p></li>
+                        <li><p>Email: <span><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a><span></p></li>
                         <li><p>Office Number: ${manager.getOfficeNumber()}</p></li>
                     </ul>
                 </div>  
@@ -40,8 +40,8 @@ const generateEngineerCard = engineerArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${engineer.getId()}</span></p></li>
-                        <li><p>Email: <span>${engineer.getEmail()}<span></p></li>
-                        <li><p>GitHub: ${engineer.getGithub()}</p></li>
+                        <li><p>Email: <span><a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a><span></p></li>
+                        <li><p>GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></p></li>
                     </ul>
                 </div>  
             </div>
@@ -60,7 +60,7 @@ const generateInternCard = interArr => {
                 <div class="card-body">
                     <ul class="card-description">
                         <li><p>ID: <span>${intern.getId()}</span></p></li>
-                        <li><p>Email: <span>${intern.getEmail()}<span></p></li>
+                        <li><p>Email: <span><a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a><span></p></li>
                         <li><p>School: ${intern.getSchool()}</p></li>
                     </ul>
                 </div>  
@@ -87,7 +87,7 @@ const generateSite = (managerArr, engineerArr, internArr) => {
             </header>
 
             <main>
-                    ${generateCards(managerArr, engineerArr, internArr)}
+                ${generateCards(managerArr, engineerArr, internArr)}
             </main>
         </body>
     </html>
