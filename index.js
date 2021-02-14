@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const emailValidator = require('email-validator');
+const colors = require('colors');
 
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
@@ -7,6 +8,13 @@ const Intern = require("./lib/Intern");
 
 const generateSite = require("./src/generate-site");
 const writeFile = require("./src/fs");
+
+colors.setTheme({
+    banner: 'bgBlue',
+    success: 'bgGreen',
+    error: 'bgRed',
+    text: 'white',
+});
 
 class TeamMembers {
     constructor() {
@@ -27,16 +35,16 @@ class TeamMembers {
                 this.promptIntern();
                 break;
             default:
-                const pageHTML = generateSite(this.manager, this.engineer, this.intern)    
+                const pageHTML = generateSite(this.manager, this.engineer, this.intern);
                 writeFile(pageHTML)
-                    .then(res => console.log("\x1b[35m", res.message))
-                    .catch(err => console.log("\x1b[31m", err));
+                    .then(res => console.log(res.message.success.text))
+                    .catch(err => console.log(err.error.text));
         };
     };
 
     promptManager(clear = false) {
         console.clear();
-        console.log("\x1b[36m", "Let's build your team!");
+        console.log(colors.bgGreen("\tLet's build your team!\t\t\n".banner.text));
 
         inquirer.prompt([
             {
@@ -46,7 +54,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log("\x1b[31m", '\nPlease enter manager\'s name!');
+                    console.log('\nPlease enter manager\'s name!'.error.text);
                     return false;
                 },
             },
@@ -56,7 +64,7 @@ class TeamMembers {
                 message: "What is the manger's ID?",
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log("\x1b[31m", '\nPlease enter a number!');
+                        console.log('\nPlease enter a number!'.error.text);
                         return false;
                     }
     
@@ -70,7 +78,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log("\x1b[31m", "\nPlease enter a valid Email address!");
+                    console.log("\nPlease enter a valid Email address!".error.text);
                     return false;
                 },
             },
@@ -80,7 +88,7 @@ class TeamMembers {
                 message: 'What is the manager\'s office number?',
                 validate: officeNumber => {
                     if (!officeNumber || isNaN(officeNumber)) {
-                        console.log("\x1b[31m", "\nYou need to enter a number!");
+                        console.log("\nYou need to enter a number!".error.text);
                         return false;
                     };
     
@@ -103,7 +111,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log("\x1b[31m", '\nPlease enter engineer\'s name');
+                    console.log('\nPlease enter engineer\'s name'.error.text);
                     return false;
                 }
             },
@@ -113,7 +121,7 @@ class TeamMembers {
                 message: "What is the Engineer's ID?",
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log("\x1b[31m", '\nPlease enter a number!');
+                        console.log('\nPlease enter a number!'.error.text);
                         return false;
                     }
     
@@ -127,7 +135,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log("\x1b[31m", "\nPlease enter a valid Email address!");
+                    console.log("\nPlease enter a valid Email address!".error.text);
                     return false;
                 },
             },
@@ -138,7 +146,7 @@ class TeamMembers {
                 validate: github => {
                     if (github) return true;
     
-                    console.log("\x1b[31m", '\nYou need to enter engineer\'s github user name');
+                    console.log('\nYou need to enter engineer\'s github user name'.error.text);
                     return false;
                 },
             }
@@ -158,7 +166,7 @@ class TeamMembers {
                 validate: name => {
                     if (name) return true;
     
-                    console.log("\x1b[31m", "\nPlease enter a name!");
+                    console.log("\nPlease enter a name!".error.text);
                     return false;
                 },
             },
@@ -168,7 +176,7 @@ class TeamMembers {
                 message: 'What is intern\'s ID?',
                 validate: id => {
                     if (!id || isNaN(id)) {
-                        console.log("\x1b[31m", '\nPlease enter a number!');
+                        console.log('\nPlease enter a number!'.error.text);
                         return false;
                     };
     
@@ -182,7 +190,7 @@ class TeamMembers {
                 validate: email => {
                     if (emailValidator.validate(email)) return true;
     
-                    console.log("\x1b[31m", '\nPlease enter a valid email address!');
+                    console.log('\nPlease enter a valid email address!'.error.text);
                     return false;
                 },
             },
@@ -193,7 +201,7 @@ class TeamMembers {
                 validate: school => {
                     if (school) return true;
     
-                    console.log("\x1b[31m", '\nPlease enter a school!');
+                    console.log('\nPlease enter a school!'.error.text);
                     return false;
                 }
             },
