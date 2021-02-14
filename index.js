@@ -37,7 +37,7 @@ class TeamMembers {
             default:
                 const pageHTML = generateSite(this.manager, this.engineer, this.intern);
                 writeFile(pageHTML)
-                    .then(res => console.log(res.message.success.text))
+                    .then(res => console.log('\n', res.message.success.text, '\n'))
                     .catch(err => console.log(err.error.text));
         };
     };
