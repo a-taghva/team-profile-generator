@@ -42,7 +42,7 @@ class TeamMembers {
         };
     };
 
-    promptManager(clear = false) {
+    promptManager() {
         console.clear();
         console.log(colors.bgGreen("\tLet's build your team!\t\t\n".banner.text));
 
